@@ -8,7 +8,7 @@ class Test(unittest.TestCase):
 
     def test_ok(self):
         # do stuff
-        os.chdir("./test/test1/input")
+        os.chdir("./test/test2/input")
         for f in os.listdir():
             if f.startswith("_"):
                 os.rename(f, f[1:])

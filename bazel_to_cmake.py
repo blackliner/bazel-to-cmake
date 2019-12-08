@@ -28,11 +28,11 @@ import ast
 
 
 def StripColons(deps):
-    return map(lambda x: x[1:], deps)
+    return [item.replace(":", "") for item in deps]
 
 
 def IsSourceFile(name):
-    return name.endswith(".c") or name.endswith(".cc")
+    return name.endswith(".c") or name.endswith(".cc") or name.endswith(".cpp")
 
 
 class BuildFileFunctions(object):
@@ -79,6 +79,10 @@ class BuildFileFunctions(object):
             #  http://mariobadr.com/creating-a-header-only-library-with-cmake.html
             self.converter.toplevel += "add_library(%s INTERFACE)\n" % (
                 kwargs["name"]
+            )
+            self.converter.toplevel += "target_sources(%s \n %s)\n" % (
+                kwargs["name"],
+                "\n  ".join(StripColons(files))
             )
             self._add_deps(kwargs, " INTERFACE")
 

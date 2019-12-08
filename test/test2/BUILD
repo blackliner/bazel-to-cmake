@@ -1,6 +1,6 @@
 py_test(
-    name = "test1",
-    srcs = ["test1.py"],
+    name = "test2",
+    srcs = ["test2.py"],
     data = glob([
         "input/*",
         "expected/*",

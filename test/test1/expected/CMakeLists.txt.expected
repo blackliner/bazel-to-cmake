@@ -1,1 +1,3 @@
-add_library( main INTERFACE main.h )
+add_library( main INTERFACE )
+
+target_sources(main main.h)
