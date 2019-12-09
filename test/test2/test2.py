@@ -20,7 +20,7 @@ class Test(unittest.TestCase):
 
         with open("./input/test", 'r') as f:
             actual = f.read().replace("\n", "").replace(" ", "").lower()
-
+            
         self.assertTrue(expected in actual)
 
 

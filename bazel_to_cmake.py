@@ -32,7 +32,8 @@ def StripColons(deps):
 
 
 def IsSourceFile(name):
-    return name.endswith(".c") or name.endswith(".cc") or name.endswith(".cpp")
+    endings = [".c", ".cc", ".cpp"]
+    return any(n in name for n in endings )
 
 
 class BuildFileFunctions(object):
@@ -66,7 +67,9 @@ class BuildFileFunctions(object):
             return
         files = kwargs.get("srcs", []) + kwargs.get("hdrs", [])
 
-        if filter(IsSourceFile, files):
+        has_sources = IsSourceFile(files)
+
+        if has_sources:
             # Has sources, make this a normal library.
             self.converter.toplevel += "add_library(%s\n  %s)\n" % (
                 kwargs["name"],
