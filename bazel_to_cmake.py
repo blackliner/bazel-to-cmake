@@ -283,7 +283,7 @@ class Converter(object):
         include_dirs = ""
         if self.current_build_file in self.include_subdirs:
             for directory in self.include_subdirs[self.current_build_file]:
-                include_dirs += "include_directories(%s)\n" % directory.replace(
+                include_dirs += "add_subdirectory(%s)\n" % directory.replace(
                     ".", "").replace("/", "")
         return "%s\n%s" % (include_dirs, self.toplevel[self.current_build_file])
 
