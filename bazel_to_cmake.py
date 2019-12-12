@@ -47,7 +47,8 @@ def GetTargetName(names):
 
 
 def IsSourceFile(name):
-    return name.endswith(".c") or name.endswith(".cc") or name.endswith(".cpp")
+    endings = [".c", ".cc", ".cpp"]
+    return any(n in name for n in endings)
 
 
 class BuildFileFunctions(object):
